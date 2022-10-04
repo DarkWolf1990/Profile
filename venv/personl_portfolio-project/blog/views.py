@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Article
+from .models import Blog
 
 def all_blogs(request):
-  articles = Article.objects.all()
-  return render(request, 'blog/all_blogs.html', {'articles':articles})
+  blogs = Blog.objects.all().order_by('-date')[:5]
+  return render(request, 'blog/all_blogs.html', {'blogs':blogs})
